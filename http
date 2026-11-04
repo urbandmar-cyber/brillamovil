@@ -1,0 +1,845 @@
+
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<meta name="theme-color" content="#05080d">
+<meta name="description" content="BrillaMovil - Lavado de autos. Lavado exterior, limpieza interior y lavado completo. Agenda por WhatsApp.">
+
+<title>BrillaMovil | Lavado de Autos</title>
+
+<style>
+
+/* CONFIGURACIÓN GENERAL */
+
+:root {
+--negro: #05080d;
+--azul: #0799f2;
+--azul-claro: #28b5ff;
+--blanco: #ffffff;
+--gris: #b8c5d2;
+}
+
+* {
+box-sizing: border-box;
+}
+
+html {
+scroll-behavior: smooth;
+}
+
+body {
+margin: 0;
+font-family: Arial, sans-serif;
+color: var(--blanco);
+background:
+radial-gradient(ellipse at 80% 10%, rgba(0,133,230,.18), transparent 34rem),
+var(--negro);
+}
+
+a {
+color: inherit;
+text-decoration: none;
+}
+
+.container {
+width: min(1160px, calc(100% - 40px));
+margin: auto;
+}
+
+/* ENCABEZADO */
+
+header {
+min-height: 80px;
+display: flex;
+align-items: center;
+justify-content: space-between;
+gap: 20px;
+padding: 12px 0;
+}
+
+.logo img {
+width: min(330px, 55vw);
+height: auto;
+display: block;
+}
+
+nav {
+display: flex;
+gap: 24px;
+align-items: center;
+}
+
+nav a {
+color: var(--gris);
+font-size: 15px;
+font-weight: bold;
+}
+
+nav a:hover {
+color: var(--azul-claro);
+}
+
+.nav-boton {
+background: var(--azul);
+color: white;
+padding: 12px 18px;
+border-radius: 30px;
+}
+
+/* BOTONES */
+
+.boton {
+display: inline-flex;
+align-items: center;
+justify-content: center;
+gap: 10px;
+border: 1px solid var(--azul-claro);
+border-radius: 30px;
+background: linear-gradient(110deg, #0876d8, #079ff5);
+color: white;
+font-weight: bold;
+padding: 14px 20px;
+cursor: pointer;
+transition: .2s;
+}
+
+.boton:hover {
+transform: translateY(-2px);
+filter: brightness(1.15);
+}
+
+/* PORTADA */
+
+.hero {
+position: relative;
+overflow: hidden;
+border: 1px solid rgba(20,153,240,.35);
+border-radius: 28px;
+min-height: 390px;
+margin: 12px auto 58px;
+
+display: flex;
+align-items: center;
+
+background:
+linear-gradient(
+90deg,
+rgba(3,7,12,.98) 0%,
+rgba(3,7,12,.91) 42%,
+rgba(3,7,12,.28) 100%
+),
+url("assets/hero-auto.jpg") center 55% / cover,
+linear-gradient(120deg, #101a27, #05080d);
+}
+
+.hero-contenido {
+position: relative;
+z-index: 1;
+max-width: 650px;
+padding: clamp(28px, 6vw, 70px);
+}
+
+.etiqueta {
+color: var(--azul-claro);
+text-transform: uppercase;
+letter-spacing: 4px;
+font-weight: bold;
+font-size: 13px;
+}
+
+.hero h1 {
+font-size: clamp(40px, 6vw, 82px);
+line-height: .98;
+margin: 15px 0 18px;
+letter-spacing: -3px;
+}
+
+.hero h1 span {
+color: var(--azul-claro);
+}
+
+.hero p {
+color: #e1eaf2;
+font-size: clamp(16px, 2vw, 21px);
+line-height: 1.6;
+max-width: 520px;
+margin-bottom: 25px;
+}
+
+.hero-detalles {
+display: flex;
+flex-wrap: wrap;
+gap: 18px;
+margin-top: 28px;
+color: var(--gris);
+font-size: 14px;
+}
+
+.hero-detalles span::before {
+content: "✓";
+color: var(--azul-claro);
+font-weight: bold;
+margin-right: 8px;
+}
+
+/* TÍTULOS */
+
+.titulo-seccion {
+text-align: center;
+margin: 0 auto 30px;
+max-width: 700px;
+}
+
+.titulo-seccion h2 {
+font-size: clamp(30px, 4vw, 50px);
+margin: 0 0 10px;
+}
+
+.titulo-seccion h2 span {
+color: var(--azul-claro);
+}
+
+.titulo-seccion p {
+color: var(--gris);
+font-size: 17px;
+line-height: 1.6;
+}
+
+/* SERVICIOS */
+
+.servicios {
+display: grid;
+grid-template-columns: repeat(3, minmax(0, 1fr));
+gap: 22px;
+}
+
+.servicio {
+overflow: hidden;
+border: 1px solid var(--azul);
+border-radius: 22px;
+background: linear-gradient(160deg, #0f1c2b, #05090f);
+box-shadow: 0 12px 38px rgba(0,0,0,.25);
+
+display: flex;
+flex-direction: column;
+}
+
+/* ESPACIO PARA FOTOGRAFÍAS */
+
+.servicio-imagen {
+min-height: 220px;
+aspect-ratio: 16 / 10;
+position: relative;
+background: linear-gradient(135deg, #14283b, #07111d);
+display: grid;
+place-items: center;
+overflow: hidden;
+}
+
+.servicio-imagen img {
+width: 100%;
+height: 100%;
+object-fit: cover;
+position: absolute;
+inset: 0;
+}
+
+.imagen-placeholder {
+position: relative;
+z-index: 0;
+color: #9db3c6;
+text-align: center;
+padding: 20px;
+font-size: 14px;
+line-height: 1.5;
+}
+
+.imagen-placeholder strong {
+display: block;
+color: var(--azul-claro);
+margin-bottom: 5px;
+}
+
+/* INFORMACIÓN DE SERVICIOS */
+
+.servicio-contenido {
+padding: 25px 24px;
+display: flex;
+flex-direction: column;
+flex: 1;
+}
+
+.numero {
+color: var(--azul-claro);
+font-weight: bold;
+letter-spacing: 3px;
+font-size: 13px;
+}
+
+.servicio h3 {
+font-size: clamp(25px, 2.5vw, 35px);
+line-height: 1.05;
+margin: 12px 0;
+}
+
+.precio {
+color: var(--azul-claro);
+font-size: clamp(32px, 3vw, 43px);
+font-weight: bold;
+margin: 0 0 12px;
+}
+
+.servicio p {
+color: var(--gris);
+font-size: 16px;
+line-height: 1.6;
+margin-bottom: 22px;
+flex: 1;
+}
+
+.servicio .boton {
+width: 100%;
+font-size: 15px;
+}
+
+/* BENEFICIOS */
+
+.beneficios {
+display: grid;
+grid-template-columns: repeat(3, 1fr);
+gap: 18px;
+margin: 58px 0;
+}
+
+.beneficio {
+text-align: center;
+padding: 22px 14px;
+border-right: 1px solid rgba(16,153,240,.55);
+}
+
+.beneficio:last-child {
+border-right: none;
+}
+
+.simbolo {
+font-size: 35px;
+color: var(--azul-claro);
+display: block;
+margin-bottom: 8px;
+}
+
+.beneficio h3 {
+font-size: 18px;
+margin: 0 0 8px;
+}
+
+.beneficio p {
+color: var(--gris);
+font-size: 14px;
+margin: 0;
+}
+
+/* CONTACTO */
+
+.contacto {
+text-align: center;
+padding: 55px 22px;
+margin-bottom: 45px;
+
+border: 1px solid rgba(18,158,255,.55);
+border-radius: 26px;
+
+background:
+radial-gradient(ellipse at top, rgba(0,145,255,.2), transparent 65%),
+#080e16;
+}
+
+.contacto h2 {
+font-size: clamp(30px, 4vw, 48px);
+margin: 0 0 15px;
+}
+
+.contacto p {
+color: var(--gris);
+font-size: 17px;
+line-height: 1.6;
+max-width: 560px;
+margin: 0 auto 25px;
+}
+
+.contacto .boton {
+font-size: 18px;
+padding: 17px 28px;
+}
+
+/* PIE DE PÁGINA */
+
+footer {
+text-align: center;
+color: #8093a5;
+padding: 0 15px 28px;
+font-size: 14px;
+}
+
+/* TABLETS */
+
+@media (max-width: 850px) {
+
+.servicios {
+grid-template-columns: repeat(2, 1fr);
+}
+
+.servicio:last-child {
+grid-column: 1 / -1;
+width: min(100%, 520px);
+justify-self: center;
+}
+
+.hero {
+min-height: 350px;
+}
+
+}
+
+/* CELULARES */
+
+@media (max-width: 600px) {
+
+.container {
+width: min(100% - 28px, 480px);
+}
+
+header {
+min-height: 66px;
+}
+
+.logo img {
+width: min(245px, 66vw);
+}
+
+nav {
+gap: 10px;
+}
+
+nav a:not(.nav-boton) {
+display: none;
+}
+
+.nav-boton {
+padding: 10px 13px;
+font-size: 13px;
+}
+
+.hero {
+min-height: 430px;
+margin: 8px auto 45px;
+border-radius: 20px;
+background-position: 62% center;
+}
+
+.hero-contenido {
+padding: 28px 22px;
+}
+
+.hero h1 {
+font-size: 43px;
+}
+
+.hero-detalles {
+gap: 10px 16px;
+font-size: 13px;
+}
+
+.servicios {
+grid-template-columns: 1fr;
+gap: 18px;
+}
+
+.servicio:last-child {
+grid-column: auto;
+width: 100%;
+}
+
+.servicio-imagen {
+min-height: 210px;
+}
+
+.servicio-contenido {
+padding: 22px;
+}
+
+.servicio h3 {
+font-size: 32px;
+}
+
+.precio {
+font-size: 38px;
+}
+
+.beneficios {
+grid-template-columns: 1fr;
+gap: 0;
+margin: 40px 0;
+}
+
+.beneficio {
+border-right: none;
+border-bottom: 1px solid rgba(16,153,240,.35);
+}
+
+.beneficio:last-child {
+border-bottom: none;
+}
+
+.contacto {
+border-radius: 20px;
+padding: 35px 20px;
+}
+
+.contacto .boton {
+font-size: 16px;
+}
+
+}
+
+@media (prefers-reduced-motion: reduce) {
+html {
+scroll-behavior: auto;
+}
+
+*, *::before, *::after {
+transition: none !important;
+}
+}
+
+</style>
+</head>
+
+<body>
+
+<!-- ENCABEZADO -->
+
+<header class="container">
+
+<a class="logo" href="#" aria-label="BrillaMovil inicio">
+<img src="assets/logo-brillamovil.png" alt="BrillaMovil - Lavado de Autos">
+</a>
+
+<nav>
+<a href="#servicios">Servicios</a>
+<a href="#contacto">Contacto</a>
+<a href="#servicios" class="nav-boton">Elegir lavado</a>
+</nav>
+
+</header>
+
+<main>
+
+<!-- PORTADA -->
+
+<section class="hero container">
+
+<div class="hero-contenido">
+
+<div class="etiqueta">Lavado de autos</div>
+
+<h1>
+Tu auto limpio,<br>
+siempre <span>brilla más.</span>
+</h1>
+
+<p>
+Recupera el brillo de tu vehículo con una limpieza dedicada.
+Elige el servicio que necesitas y agenda directamente por WhatsApp.
+</p>
+
+<a href="#servicios" class="boton">
+Ver servicios →
+</a>
+
+<div class="hero-detalles">
+<span>Atención personalizada</span>
+<span>Cuidado y dedicación</span>
+<span>Agenda por WhatsApp</span>
+</div>
+
+</div>
+
+</section>
+
+<!-- SERVICIOS -->
+
+<section id="servicios" class="container">
+
+<div class="titulo-seccion">
+
+<div class="etiqueta">Nuestros servicios</div>
+
+<h2>
+Elige cómo quieres que
+<span>brille tu auto</span>
+</h2>
+
+<p>
+Tres alternativas para que elijas la limpieza que mejor se adapte a lo que necesitas.
+</p>
+
+</div>
+
+<div class="servicios">
+
+<!-- SERVICIO 1 -->
+
+<article class="servicio">
+
+<div class="servicio-imagen">
+
+<div class="imagen-placeholder">
+<strong>IMAGEN DEL SERVICIO</strong>
+Agrega tu fotografía en<br>
+assets/lavado-exterior.jpg
+</div>
+
+<img
+src="assets/lavado-exterior.jpg"
+alt="Lavado exterior de un automóvil"
+onerror="this.style.display='none'"
+>
+
+</div>
+
+<div class="servicio-contenido">
+
+<div class="numero">01 / EXTERIOR</div>
+
+<h3>Lavado Exterior</h3>
+
+<div class="precio">$8.000</div>
+
+<p>
+Limpieza exterior para retirar la suciedad y devolverle una apariencia limpia y brillante a tu vehículo.
+</p>
+
+<button
+class="boton"
+onclick="reservar('Lavado Exterior', 8000)"
+>
+Reservar por WhatsApp
+</button>
+
+</div>
+
+</article>
+
+<!-- SERVICIO 2 -->
+
+<article class="servicio">
+
+<div class="servicio-imagen">
+
+<div class="imagen-placeholder">
+<strong>IMAGEN DEL SERVICIO</strong>
+Agrega tu fotografía en<br>
+assets/limpieza-interior.jpg
+</div>
+
+<img
+src="assets/limpieza-interior.jpg"
+alt="Limpieza interior de un automóvil"
+onerror="this.style.display='none'"
+>
+
+</div>
+
+<div class="servicio-contenido">
+
+<div class="numero">02 / INTERIOR</div>
+
+<h3>Limpieza Interior</h3>
+
+<div class="precio">$9.000</div>
+
+<p>
+Limpieza del interior del vehículo para dejar el habitáculo más ordenado, cuidado y agradable.
+</p>
+
+<button
+class="boton"
+onclick="reservar('Limpieza Interior', 9000)"
+>
+Reservar por WhatsApp
+</button>
+
+</div>
+
+</article>
+
+<!-- SERVICIO 3 -->
+
+<article class="servicio">
+
+<div class="servicio-imagen">
+
+<div class="imagen-placeholder">
+<strong>IMAGEN DEL SERVICIO</strong>
+Agrega tu fotografía en<br>
+assets/lavado-completo.jpg
+</div>
+
+<img
+src="assets/lavado-completo.jpg"
+alt="Lavado completo de un automóvil"
+onerror="this.style.display='none'"
+>
+
+</div>
+
+<div class="servicio-contenido">
+
+<div class="numero">03 / COMPLETO</div>
+
+<h3>Lavado Completo</h3>
+
+<div class="precio">$12.000</div>
+
+<p>
+Una limpieza exterior e interior para darle a tu vehículo una renovación completa.
+</p>
+
+<button
+class="boton"
+onclick="reservar('Lavado Completo', 12000)"
+>
+Reservar por WhatsApp
+</button>
+
+</div>
+
+</article>
+
+</div>
+
+</section>
+
+<!-- BENEFICIOS -->
+
+<section class="container beneficios">
+
+<div class="beneficio">
+
+<span class="simbolo">◇</span>
+
+<h3>Resultados que se notan</h3>
+
+<p>
+Atención a los detalles de cada lavado.
+</p>
+
+</div>
+
+<div class="beneficio">
+
+<span class="simbolo">✧</span>
+
+<h3>Atención personalizada</h3>
+
+<p>
+Elegimos el servicio que tu auto necesita.
+</p>
+
+</div>
+
+<div class="beneficio">
+
+<span class="simbolo">✓</span>
+
+<h3>Compromiso y calidad</h3>
+
+<p>
+Cuidado y dedicación en cada servicio.
+</p>
+
+</div>
+
+</section>
+
+<!-- CONTACTO -->
+
+<section id="contacto" class="container contacto">
+
+<div class="etiqueta">BrillaMovil</div>
+
+<h2>
+¿Listo para hacer brillar tu auto?
+</h2>
+
+<p>
+Selecciona uno de nuestros servicios o escríbenos directamente.
+Te atenderemos por WhatsApp para coordinar tu lavado.
+</p>
+
+<a
+class="boton"
+href="https://wa.me/56940368665?text=Hola%2C%20BrillaMovil.%20Quiero%20consultar%20por%20un%20lavado%20de%20auto."
+target="_blank"
+rel="noopener noreferrer"
+>
+Escribir por WhatsApp
+</a>
+
+</section>
+
+</main>
+
+<!-- PIE DE PÁGINA -->
+
+<footer>
+
+© <span id="year"></span> BrillaMovil · Lavado de Autos
+
+</footer>
+
+<!-- SISTEMA DE WHATSAPP -->
+
+<script>
+
+/* NÚMERO DE WHATSAPP */
+
+const WHATSAPP_NUMBER = "56940368665";
+
+/* FUNCIÓN PARA RESERVAR */
+
+function reservar(servicio, precio) {
+
+const mensaje = [
+"Hola, BrillaMovil. Quiero agendar un servicio de lavado.",
+"",
+"Servicio: " + servicio,
+"Valor: $" + precio.toLocaleString("es-CL"),
+"",
+"¿Qué disponibilidad tienen?"
+].join("\n");
+
+const url =
+"https://wa.me/" +
+WHATSAPP_NUMBER +
+"?text=" +
+encodeURIComponent(mensaje);
+
+window.open(url, "_blank", "noopener,noreferrer");
+
+}
+
+/* AÑO AUTOMÁTICO */
+
+document.getElementById("year").textContent =
+new Date().getFullYear();
+
+</script>
+
+</body>
+</html>
